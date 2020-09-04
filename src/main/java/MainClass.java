@@ -21,7 +21,17 @@ import java.io.IOException;
 
 public class MainClass extends Application {
 
+    static Stage sg;
     private int numberQue = 0;
+    Welcome welcome;
+    Questions question;
+    Answers answers;
+
+    {
+        welcome = new Welcome();
+        question = new Questions();
+        answers = new Answers();
+    }
 
     public static void main(String[] args) {
         Questions.fullQue();
@@ -29,8 +39,8 @@ public class MainClass extends Application {
     }
 
     public void start(Stage primaryStage) throws IOException {
-        Questions question = new Questions();
-        Answers answers = new Answers();
+        sg = primaryStage;
+        welcome.acquaintance();
         Text text = new Text();
         text.setText("1) Он считает, что изменения  - это  путь к успеху.");
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
@@ -75,6 +85,7 @@ public class MainClass extends Application {
                         answers.responseHandler(numberQue, 5);
                     }
                     if (numberQue >= 15){
+                        primaryStage.close();
                         Answers.result();
                     }
                     text.setText(question.newQuestions());
@@ -91,10 +102,9 @@ public class MainClass extends Application {
         vBox.setAlignment(Pos.CENTER_LEFT);
 
         Group root = new Group(text, vBox, button);
-        primaryStage.setTitle("Исследование инновационности личности");
+        sg.setTitle("Исследование инновационности личности");
         Scene scene = new Scene(root, 800, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        sg.setScene(scene);
     }
 
 }
