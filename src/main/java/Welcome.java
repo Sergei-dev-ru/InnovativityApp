@@ -58,7 +58,7 @@ public class Welcome {
         textField1.setLayoutY(300);
 
         Group root = new Group(text, button, textField, textField1, imageView);
-        stage.setTitle("Исследование инновационности личности");
+        stage.setTitle("Исследование инновационности личности ");
         Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
         stage.show();
