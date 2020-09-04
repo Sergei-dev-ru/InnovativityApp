@@ -46,7 +46,7 @@ public class Questions {
             return questions.get(0);
         }
         catch (Exception e){
-            return "На этом все";
+            return "Спасибо за внимание! До новых встреч!";
         }
     }
 
