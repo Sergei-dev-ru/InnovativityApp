@@ -75,7 +75,6 @@ public class MainClass extends Application {
                         answers.responseHandler(numberQue, 5);
                     }
                     if (numberQue >= 15){
-                        System.out.println("test");
                         Answers.result();
                     }
                     text.setText(question.newQuestions());
