@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Answers {
 
-    static List<Integer> creativity = new ArrayList<Integer>();
-    static List<Integer> riskForSuccess = new ArrayList<Integer>();
-    static List<Integer> futureOrientation = new ArrayList<Integer>();
+    private List<Integer> creativity = new ArrayList<Integer>();
+    private List<Integer> riskForSuccess = new ArrayList<Integer>();
+    private List<Integer> futureOrientation = new ArrayList<Integer>();
 
     public void responseHandler(int numberQue, int button){
 
@@ -41,7 +41,7 @@ public class Answers {
         }
     }
 
-    public static void result(){
+    public void result(){
 
         Stage stage = new Stage();
         double j = 0;
