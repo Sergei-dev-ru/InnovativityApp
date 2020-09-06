@@ -15,8 +15,16 @@ import java.io.FileNotFoundException;
 
 public class Welcome {
 
-    static TextField textField;
-    static TextField textField1;
+    private static TextField textField;
+    private static TextField textField1;
+
+    public static TextField getTextField() {
+        return textField;
+    }
+
+    public static TextField getTextField1() {
+        return textField1;
+    }
 
     public void acquaintance() throws FileNotFoundException {
         FileInputStream input = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\ps.png");
