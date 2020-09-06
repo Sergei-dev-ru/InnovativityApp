@@ -11,20 +11,24 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.IOException;
+
+import java.io.*;
 
 public class MainClass extends Application {
 
     private static Stage stg;
     private int numberQue = 0;
     private Welcome welcome;
-    private Questions question;
     private Answers answers;
+    BufferedReader reader;
 
     {
         welcome = new Welcome();
-        question = new Questions();
         answers = new Answers();
+        try {
+            reader  = new BufferedReader(new FileReader("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\Questions.txt"));
+        } catch (FileNotFoundException e) {
+        }
     }
 
     public static Stage getStg() {
@@ -32,8 +36,6 @@ public class MainClass extends Application {
     }
 
     public static void main(String[] args) {
-        Questions questions = new Questions();
-        questions.fullQue();
         Application.launch(args);
     }
 
@@ -41,7 +43,7 @@ public class MainClass extends Application {
         stg = primaryStage;
         welcome.acquaintance();
         Text text = new Text();
-        text.setText("1) Он считает, что изменения  - это  путь к успеху.");
+        text.setText(reader.readLine());
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
         text.setX(30);
         text.setY(80);
@@ -87,7 +89,11 @@ public class MainClass extends Application {
                         primaryStage.close();
                         answers.result();
                     }
-                    text.setText(question.newQuestions());
+                    try {
+                        text.setText(reader.readLine());
+                    } catch (IOException e) {
+                    }
+
                 }
             });
 
