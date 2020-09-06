@@ -15,11 +15,11 @@ import java.io.IOException;
 
 public class MainClass extends Application {
 
-    static Stage sg;
+    private static Stage sg;
     private int numberQue = 0;
-    Welcome welcome;
-    Questions question;
-    Answers answers;
+    private Welcome welcome;
+    private Questions question;
+    private Answers answers;
 
     {
         welcome = new Welcome();
@@ -27,8 +27,13 @@ public class MainClass extends Application {
         answers = new Answers();
     }
 
+    public static Stage getSg() {
+        return sg;
+    }
+
     public static void main(String[] args) {
-        Questions.fullQue();
+        Questions questions = new Questions();
+        questions.fullQue();
         Application.launch(args);
     }
 
@@ -80,7 +85,7 @@ public class MainClass extends Application {
                     }
                     if (numberQue >= 15){
                         primaryStage.close();
-                        Answers.result();
+                        answers.result();
                     }
                     text.setText(question.newQuestions());
                 }

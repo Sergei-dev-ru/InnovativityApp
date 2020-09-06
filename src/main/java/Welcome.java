@@ -41,7 +41,7 @@ public class Welcome {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                MainClass.sg.show();
+                MainClass.getSg().show();
                 stage.close();
             }
         });
