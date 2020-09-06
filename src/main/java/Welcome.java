@@ -27,7 +27,7 @@ public class Welcome {
     }
 
     public void acquaintance() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\ps.png");
+        FileInputStream input = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\psycho.png");
         Image image = new Image(input, 120, 220, true, false);
         ImageView imageView = new ImageView(image);
         imageView.setX(250);
@@ -49,7 +49,7 @@ public class Welcome {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                MainClass.getSg().show();
+                MainClass.getStg().show();
                 stage.close();
             }
         });

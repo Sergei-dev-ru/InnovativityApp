@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class MainClass extends Application {
 
-    private static Stage sg;
+    private static Stage stg;
     private int numberQue = 0;
     private Welcome welcome;
     private Questions question;
@@ -27,8 +27,8 @@ public class MainClass extends Application {
         answers = new Answers();
     }
 
-    public static Stage getSg() {
-        return sg;
+    public static Stage getStg() {
+        return stg;
     }
 
     public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class MainClass extends Application {
     }
 
     public void start(Stage primaryStage) throws IOException {
-        sg = primaryStage;
+        stg = primaryStage;
         welcome.acquaintance();
         Text text = new Text();
         text.setText("1) Он считает, что изменения  - это  путь к успеху.");
@@ -101,9 +101,9 @@ public class MainClass extends Application {
         vBox.setAlignment(Pos.CENTER_LEFT);
 
         Group root = new Group(text, vBox, button);
-        sg.setTitle("Исследование инновационности личности");
+        stg.setTitle("Исследование инновационности личности");
         Scene scene = new Scene(root, 800, 600);
-        sg.setScene(scene);
+        stg.setScene(scene);
     }
 
 }

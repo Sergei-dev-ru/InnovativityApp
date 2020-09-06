@@ -85,7 +85,7 @@ public class Answers {
         text3.setY(300);
 
         Text text = new Text();
-        text.setText(Welcome.textField.getText().substring(5) + " " + Welcome.textField1.getText().substring(9) + '\n' + "Ваши результаты: ");
+        text.setText(Welcome.getTextField().getText().substring(5) + " " + Welcome.getTextField1().getText().substring(9) + '\n' + "Ваши результаты: ");
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
         text.setX(50);
         text.setY(80);
