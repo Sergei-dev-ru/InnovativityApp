@@ -28,6 +28,7 @@ public class MainClass extends Application {
         try {
             reader  = new BufferedReader(new FileReader("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\Questions.txt"));
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -35,11 +36,11 @@ public class MainClass extends Application {
         return stg;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Application.launch(args);
     }
 
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
         stg = primaryStage;
         welcome.acquaintance();
         Text text = new Text();
@@ -92,9 +93,11 @@ public class MainClass extends Application {
                     try {
                         text.setText(reader.readLine());
                     } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                 }
+
             });
 
         VBox.setMargin(button1, new Insets(150, 10, 5, 20));
@@ -110,6 +113,7 @@ public class MainClass extends Application {
         stg.setTitle("Исследование инновационности личности");
         Scene scene = new Scene(root, 800, 600);
         stg.setScene(scene);
+
     }
 
 }
