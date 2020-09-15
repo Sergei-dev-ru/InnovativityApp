@@ -1,17 +1,11 @@
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Welcome {
 
@@ -26,25 +20,16 @@ public class Welcome {
         return textField1;
     }
 
-    public void acquaintance() throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\psycho.png");
-        Image image = new Image(input, 120, 220, true, false);
-        ImageView imageView = new ImageView(image);
-        imageView.setX(250);
-        imageView.setY(50);
+    public void acquaintance() throws IOException {
 
-        Stage stage = new Stage();
-        Button button = new Button("Далее");
-        button.setPrefSize(120, 35);
-        button.setStyle("-fx-border-color: #0000ff; -fx-border-width: 1px;");
-        button.setLayoutX(250);
-        button.setLayoutY(450);
+        Logic logic = new Logic();
 
-        Text text = new Text();
-        text.setText("Здравствуйте! Введите пожалуйста ваши имя и фамилию:");
-        text.setFont(Font.font("Calibri", FontWeight.NORMAL, 20));
-        text.setX(50);
-        text.setY(180);
+        ImageView imageView = logic.createImage("src\\main\\resources\\psycho.png", 120,220,250,50);
+        Button button = logic.createButton("Далее", 250, 450);
+        Text text = logic.createText(20,50,180, "welcome");
+        textField = logic.createTextField("Имя", 50, 250);
+        textField1 = logic.createTextField("Фамилия", 50, 300);
+        Stage stage = logic.createStage(text, button, textField, textField1, imageView);
 
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -54,23 +39,7 @@ public class Welcome {
             }
         });
 
-        textField = new TextField("Имя: ");
-        textField.setPrefColumnCount(30);
-        textField.setStyle ("-fx-border-color: #0000ff; -fx-border-width: 1px;");
-        textField.setLayoutX(50);
-        textField.setLayoutY(250);
-        textField1 = new TextField("Фамилия: ");
-        textField1.setPrefColumnCount(30);
-        textField1.setStyle ("-fx-border-color: #0000ff; -fx-border-width: 1px;");
-        textField1.setLayoutX(50);
-        textField1.setLayoutY(300);
-
-        Group root = new Group(text, button, textField, textField1, imageView);
-        stage.setTitle("Исследование инновационности личности ");
-        Scene scene = new Scene(root, 600, 600);
-        stage.setScene(scene);
         stage.show();
-
     }
 
 }
