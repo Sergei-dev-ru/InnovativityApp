@@ -1,9 +1,9 @@
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -11,34 +11,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Logic {
 
-    private static Stage stg;
-    private int numberQue = 0;
-    private Welcome welcome;
-    private Answers answers;
     private BufferedReader reader;
 
     {
-        welcome = new Welcome();
-        answers = new Answers();
         try {
-            reader  = new BufferedReader(new FileReader("C:\\Users\\Admin\\IdeaProjects\\Sergei-dev-PersonalityInnovativenessTest\\src\\main\\resources\\Questions.txt"));
+            reader  = new BufferedReader(new FileReader("src\\main\\resources\\Questions.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public Text createText(int size, int x, int y) throws IOException {
-        Text text = new Text();
-        text.setText(reader.readLine());
-        text.setFont(Font.font("Calibri", FontWeight.NORMAL, size));
-        text.setX(x);
-        text.setY(y);
-        return text;
     }
 
     public Text createText(int size, int x, int y, String str) throws IOException {
@@ -49,15 +33,27 @@ public class Logic {
         if(str.equals("result")){
             text.setText(Welcome.getTextField().getText().substring(5) + " " + Welcome.getTextField1().getText().substring(9) + '\n' + "Ваши результаты: ");
         }
+        if(str.equals("go")){
+            text.setText(reader.readLine());
+            reader.close();
+        }
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, size));
         text.setX(x);
         text.setY(y);
         return text;
     }
 
-    public Text createText(int size, int x, int y, int hz) throws IOException {
+    public Text createText(int size, int x, int y, String str, double d) {
         Text text = new Text();
-        text.setStyle ("-fx-border-color: #0000ff; -fx-border-width: 1px;");
+        if(str.equals("creativity")){
+            text.setText("Креативность = " + d);
+        }
+        if(str.equals("riskForSuccess")){
+            text.setText("Риск ради успеха = " + d);
+        }
+        if(str.equals("futureOrientation")){
+            text.setText("Ориентация на будующее = " + d);
+        }
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, size));
         text.setX(x);
         text.setY(y);
@@ -103,6 +99,26 @@ public class Logic {
         else return null;
     }
 
+    public void setMargin(RadioButton rb[]){
+        for(int i = 0; i < rb.length; i++){
+            if(i == 0){
+                VBox.setMargin(rb[i], new Insets(150, 10, 5, 20));
+            } else {
+                VBox.setMargin(rb[i], new Insets(5, 10, 5, 20));
+            }
+        }
+    }
+
+    public ToggleGroup createToggleGroup(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4, RadioButton rb5){
+        ToggleGroup radioGroup = new ToggleGroup();
+        rb5.setToggleGroup(radioGroup);
+        rb4.setToggleGroup(radioGroup);
+        rb3.setToggleGroup(radioGroup);
+        rb2.setToggleGroup(radioGroup);
+        rb1.setToggleGroup(radioGroup);
+        return  radioGroup;
+    }
+
     public ImageView createImage(String str, int rW, int rH, int x, int y) throws FileNotFoundException {
         FileInputStream input = new FileInputStream(str);
         Image image = new Image(input, rW, rH, true, false);
@@ -120,5 +136,4 @@ public class Logic {
         textField.setLayoutY(y);
         return textField;
     }
-
 }
