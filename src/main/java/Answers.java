@@ -1,6 +1,11 @@
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +15,18 @@ public class Answers {
     private List<Integer> creativity;
     private List<Integer> riskForSuccess;
     private List<Integer> futureOrientation;
+    private BufferedWriter writer;
     private double log;
+    private double cRes;
+    private double rRes;
+    private double fRes;
 
     {
+        try {
+            writer = new BufferedWriter(new FileWriter("src\\main\\resources\\Output.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         creativity = new ArrayList<>();
         riskForSuccess = new ArrayList<>();
         futureOrientation = new ArrayList<>();
@@ -45,44 +59,55 @@ public class Answers {
     }
 
     public void result() throws IOException {
-
         Logic logic = new Logic();
 
-        Text text = logic.createText(20,50,200, "creativity", scaleResult("creativity"));
-        Text text1 = logic.createText(20,50,250,"riskForSuccess", scaleResult("riskForSuccess"));
-        Text text2 = logic.createText(20,50,300,"futureOrientation", scaleResult("futureOrientation"));
+        Button button = logic.createButton("Завершить", 660, 530);
+        scaleResult("creativity");
+        scaleResult("riskForSuccess");
+        scaleResult("futureOrientation");
+        Text text = logic.createText(20,50,200, "creativity", cRes);
+        Text text1 = logic.createText(20,50,250,"riskForSuccess", rRes);
+        Text text2 = logic.createText(20,50,300,"futureOrientation", fRes);
         Text text3 = logic.createText(20,50,80, "result");
-
-        Stage stage = logic.createStage(text, text1, text2, text3);
+        writer.write(String.valueOf(cRes + "\n" + rRes + "\n" + fRes + "\n" + (cRes + rRes + fRes)/3));
+        writer.close();
+        Stage stage = logic.createStage(button, text, text1, text2, text3);
         stage.show();
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    LogicDB logicDB = new LogicDB();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.close();
+            }
+        });
     }
 
-    public double scaleResult(String str){
+    public void scaleResult(String str){
         if(str.equals("creativity")) {
             log = 0;
             for (int i = 0; i < creativity.size(); i++) {
                 log += creativity.get(i);
             }
-            log = log / Double.valueOf(creativity.size());
-            return log;
+            cRes = log / Double.valueOf(creativity.size());
         }
         if(str.equals("riskForSuccess")) {
             log = 0;
             for (int i = 0; i < riskForSuccess.size(); i++) {
                 log += riskForSuccess.get(i);
             }
-            log = log / Double.valueOf(riskForSuccess.size());
-            return log;
+            rRes = log / Double.valueOf(riskForSuccess.size());
         }
         if(str.equals("futureOrientation")) {
             log = 0;
             for (int i = 0; i < futureOrientation.size(); i++) {
                 log += futureOrientation.get(i);
             }
-            log = log / Double.valueOf(futureOrientation.size());
-            return log;
+            fRes = log / Double.valueOf(futureOrientation.size());
         }
-        else return 0;
     }
 
 }
