@@ -28,6 +28,7 @@ public class LogicDB {
                 + Double.parseDouble(reader.readLine()) + ","
                 + Double.parseDouble(reader.readLine()) + ","
                 + Double.parseDouble(reader.readLine()) + ");";
+        reader.close();
     }
 
     public LogicDB() throws IOException {
