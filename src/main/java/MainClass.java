@@ -12,7 +12,7 @@ import java.io.*;
 public class MainClass extends Application  {
 
     private static Stage stg;
-    private int numberQue = 0;
+    private int numberQue;
     private Welcome welcome;
     private Answers answers;
     private BufferedReader reader;
@@ -20,6 +20,7 @@ public class MainClass extends Application  {
     {
         welcome = new Welcome();
         answers = new Answers();
+        numberQue = 0;
         try {
             reader  = new BufferedReader(new FileReader("src\\main\\resources\\radioButtonName.txt"));
         } catch (FileNotFoundException e) {
@@ -42,7 +43,6 @@ public class MainClass extends Application  {
         Text text = logic.createText(20,30,80, "go");
 
         Button button = logic.createButton("Далее", 660, 530);
-
         RadioButton[] rb = new RadioButton[5];
         for(int i = 0; i < rb.length; i++){
             rb[i] = new RadioButton(reader.readLine());
