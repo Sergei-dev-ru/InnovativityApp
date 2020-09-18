@@ -39,23 +39,23 @@ public class Welcome {
     public void acquaintance() throws IOException {
 
         Logic logic = new Logic();
-
-        ImageView imageView = logic.createImage("src\\main\\resources\\psycho.png", 120,220,250,50);
         Button button = logic.createButton("Далее", 250, 450);
-        HBox hBox = logic.createHBox();
-        Text text = logic.createText(15,60,382, "Пол:");
-        Text text1 = logic.createText(20,50,180, "welcome");
         textField = logic.createTextField("Имя", 50, 250);
         textField1 = logic.createTextField("Фамилия", 50, 290);
         textField2 = logic.createTextField("Возраст", 50, 330);
-        Stage stage = logic.createStage(text, text1, button, textField, textField1, textField2, imageView, hBox);
+        Stage stage = logic.createStage(button, textField, textField1, textField2);
 
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 MainClass.getStg().show();
                 gender = logic.genderSelected();
-                age = Integer.parseInt(textField2.getText().substring(9));
+                try {
+                    age = Integer.parseInt(textField2.getText().substring(9));
+                }
+                catch (NumberFormatException e){
+                    System.out.println("Введен некорректный возраст");
+                }
                 stage.close();
             }
         });
