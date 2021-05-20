@@ -83,8 +83,12 @@ public class Logic {
         return stage;
     }
 
-    public Stage createStage(Text text, Text text1, Button button, TextField textField1, TextField textField2, TextField textField3, ImageView imageView, HBox hBox){
+    public Stage createStage(Button button, TextField textField1, TextField textField2, TextField textField3) throws IOException {
         Stage stage = new Stage();
+        ImageView imageView = createImage("src\\main\\resources\\psycho.png", 120,220,250,50);
+        HBox hBox = createHBox();
+        Text text = createText(15,60,382, "Пол:");
+        Text text1 = createText(20,50,180, "welcome");
         Group root1 = new Group(text, text1, button, textField1, textField2, textField3, imageView, hBox);
         stage.setTitle("Исследование инновационности личности ");
         Scene scene = new Scene(root1, 600, 600);

@@ -51,7 +51,7 @@ public class Welcome {
                 MainClass.getStg().show();
                 gender = logic.genderSelected();
                 try {
-                    age = Integer.parseInt(textField2.getText().substring(9));
+                    age  = Integer.parseInt(textField2.getText().substring(9));
                 }
                 catch (NumberFormatException e){
                     System.out.println("Введен некорректный возраст");

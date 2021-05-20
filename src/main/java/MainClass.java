@@ -41,7 +41,6 @@ public class MainClass extends Application  {
         welcome.acquaintance();
 
         Text text = logic.createText(20,30,80, "go");
-
         Button button = logic.createButton("Далее", 660, 530);
         RadioButton[] rb = new RadioButton[5];
         for(int i = 0; i < rb.length; i++){
