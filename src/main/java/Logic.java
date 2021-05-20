@@ -1,5 +1,6 @@
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -59,25 +60,21 @@ public class Logic {
 
     public Text createText(int size, int x, int y, String str, double d) throws IOException {
         Text text = new Text();
-        if(str.equals("creativity")){
-            text.setText("Креативность = " + d);
-        }
-        if(str.equals("riskForSuccess")){
-            text.setText("Риск ради успеха = " + d);
-        }
-        if(str.equals("futureOrientation")){
-            text.setText("Ориентация на будующее = " + d);
-        }
+
+        text.setText(str +" = " + d);
+
         text.setFont(Font.font("Calibri", FontWeight.NORMAL, size));
         text.setX(x);
         text.setY(y);
         return text;
     }
 
-    public Stage createStage(Button button, Text text, Text text1, Text text2, Text text3){
-        Group root = new Group(button, text, text1, text2, text3);
+    public Stage createStage(Button button, Text text1, Text text2, Text text3, Text text4, Text text5, Text text6, Text text7, Text text8,
+                             Text text9, Text text10, Text text11, Text text12, Text text13, Text text14, Text text15, Text text16, Text text17){
+        Group root = new Group(button, text1, text2, text3, text4, text5, text6, text7, text8,
+                               text9, text10, text11, text12, text13, text14, text15, text16, text17);
         Stage stage = new Stage();
-        stage.setTitle("Исследование инновационности личности");
+        stage.setTitle("Тест-суждений самореализации личности (С.И. Кудинов)");
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         return stage;
@@ -90,7 +87,7 @@ public class Logic {
         Text text = createText(15,60,382, "Пол:");
         Text text1 = createText(20,50,180, "welcome");
         Group root1 = new Group(text, text1, button, textField1, textField2, textField3, imageView, hBox);
-        stage.setTitle("Исследование инновационности личности ");
+        stage.setTitle("Тест-суждений самореализации личности (С.И. Кудинов) ");
         Scene scene = new Scene(root1, 600, 600);
         stage.setScene(scene);
         return stage;
@@ -99,7 +96,7 @@ public class Logic {
     public Stage createStage(Stage primaryStage, Text text, VBox vBox, Button button){
         primaryStage = new Stage();
         Group root1 = new Group(text, vBox, button);
-        primaryStage.setTitle("Исследование инновационности личности");
+        primaryStage.setTitle("Тест-суждений самореализации личности (С.И. Кудинов)");
         Scene scene = new Scene(root1, 800, 600);
         primaryStage.setScene(scene);
         return primaryStage;

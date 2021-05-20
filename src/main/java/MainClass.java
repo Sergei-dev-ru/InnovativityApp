@@ -75,10 +75,12 @@ public class MainClass extends Application  {
                     numberQue++;
                     answers.responseHandler(numberQue, 6);
                 }
-                if (numberQue > 3){
+                if (numberQue > 2){
                     stg.close();
                     try {
+                        System.out.println("Курлык");
                         answers.result();
+                        System.out.println("Курлык гуд");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
