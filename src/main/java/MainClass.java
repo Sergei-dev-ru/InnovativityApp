@@ -42,13 +42,13 @@ public class MainClass extends Application  {
 
         Text text = logic.createText(20,30,80, "go");
         Button button = logic.createButton("Далее", 660, 530);
-        RadioButton[] rb = new RadioButton[5];
+        RadioButton[] rb = new RadioButton[6];
         for(int i = 0; i < rb.length; i++){
             rb[i] = new RadioButton(reader.readLine());
         }
-        ToggleGroup radioGroup = logic.createToggleGroup(rb[4], rb[3], rb[2], rb[1], rb[0]);
+        ToggleGroup radioGroup = logic.createToggleGroup(rb[5], rb[4], rb[3], rb[2], rb[1], rb[0]);
         logic.setMargin(rb);
-        VBox vBox = new VBox(10, rb[0], rb[1], rb[2], rb[3], rb[4]);
+        VBox vBox = new VBox(10, rb[0], rb[1], rb[2], rb[3], rb[4], rb[5]);
         vBox.setAlignment(Pos.CENTER_LEFT);
 
         reader = new BufferedReader(new FileReader("src\\main\\resources\\Questions.txt"));
@@ -71,8 +71,11 @@ public class MainClass extends Application  {
                 } else if (rb[4].isSelected()) {
                     numberQue++;
                     answers.responseHandler(numberQue, 5);
+                } else if (rb[5].isSelected()) {
+                    numberQue++;
+                    answers.responseHandler(numberQue, 6);
                 }
-                if (numberQue > 15){
+                if (numberQue > 3){
                     stg.close();
                     try {
                         answers.result();

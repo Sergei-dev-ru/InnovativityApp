@@ -124,8 +124,9 @@ public class Logic {
         }
     }
 
-    public ToggleGroup createToggleGroup(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4, RadioButton rb5){
+    public ToggleGroup createToggleGroup(RadioButton rb1, RadioButton rb2, RadioButton rb3, RadioButton rb4, RadioButton rb5, RadioButton rb6){
         ToggleGroup radioGroup = new ToggleGroup();
+        rb6.setToggleGroup(radioGroup);
         rb5.setToggleGroup(radioGroup);
         rb4.setToggleGroup(radioGroup);
         rb3.setToggleGroup(radioGroup);
